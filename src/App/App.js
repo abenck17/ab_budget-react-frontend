@@ -179,23 +179,23 @@ class App extends Component {
 
     return (
       <div className="App">
-        <nav>
+        {/* <nav>
           <Link to="/">HomePage</Link>
-        </nav>
+        </nav> */}
 
         <main>
           <Switch>
             <Route exact path='/' render={() =>
             <Homepage {...this.state} homePage={this.homePage}/>}/>
 
-            <Route exact path="/signup" component={(routerProps) => 
+            <Route path="/signup" component={(routerProps) => 
             <SignUp users={this.state.users} addUser={this.addUser} {...this.state} {...routerProps} />}/>
 
-            <Route exact path="/login" component={(routerProps) => 
+            <Route path="/login" component={(routerProps) => 
             <Login users={this.state.users} logIn={this.logIn} {...this.state} {...routerProps} />}
             />
 
-            <Route exact path="/allusers" component={() => 
+            <Route path="/allusers" component={() => 
             <AllUsers users={this.state.users} addUser={this.addUser} deleteUser={this.deleteUser}/>}/>
 
             <Route path="/users/:id" component={(routerProps) => 
