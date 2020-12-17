@@ -8,7 +8,7 @@ HTML {
   }
   /* --- background image --- */
   .body {
-    background-image: url("https://www.redlinebrewhouse.com/wp-content/uploads/2018/02/brewery-web-header.jpg");
+    background-image: url("https://www.mergersandinquisitions.com/wp-content/uploads/2018/12/how-to-get-into-investment-banking-around-the-world.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     image-rendering: crisp-edges;
@@ -17,37 +17,51 @@ HTML {
     height: 100vh;
     overflow:auto;
   }
+
+  .extraBody {
+    border-radius: 5px;
+    height: 60%;
+    width: 70%;
+    margin-left: 5%;
+    margin-top: 5%;
+    opacity: 0.85;
+    background-color: white;
+    /* background-color: rgba(0,0,0,0.4); */
+  }
+
   h1 {
+      font-family: 'Roboto Mono', monospace;
       position: absolute;
-      font-size: 166px;
+      font-size: 130px;
       margin-top: 0px;
-      left: 20%;
+      left: 10%;
       top: 15%;
-      color: goldenrod;
+      color: rgb(50, 168, 153);
     }
     h1 i {
-      color: white;
-      font-family: 'Bad Script', cursive;
+      color: black;
+      font-family: 'Roboto Mono', monospace;
     }
     /* --- Nav Bar ---  */
     .homepageNav {
         position: absolute;
-        width: 30%;
-        top: 55%;
-        left: 30%;
+        width: 40%;
+        top: 45%;
+        left: 20%;
     }
     .homepageNavBar {
       display: flex;
       justify-content: space-evenly;
       border-radius: 10px;
-      background:goldenrod;
+      background:rgb(50, 168, 153);
       height: 50px;
       justify-content: center;
       opacity: 0.6;
     }
     .homepageLink {
       display: block;
-      background:goldenrod;
+      border-radius: 5px;
+      background:rgb(50, 168, 153);
       color: black;
       font-size: 20px;
       transition: 0.2s linear;
@@ -57,7 +71,7 @@ HTML {
       text-decoration: none;
     }
     .homepageLink:hover {
-      background-color: rgb(214, 163, 34);
+      background-color: rgb(41, 217, 196);
       border: lightgray solid 1px;
       cursor: pointer;
     }

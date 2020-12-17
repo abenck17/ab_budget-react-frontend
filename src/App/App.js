@@ -79,6 +79,7 @@ class App extends Component {
     .then(res => {
       if (res.status === 200) {
         console.log("res status 200")
+        console.log(event.target.id.value)
         // this.setState({ loggedIn: "true" })
       } else {
         const error = new Error(res.error);
@@ -187,8 +188,8 @@ class App extends Component {
             <Route exact path='/' render={() =>
             <Homepage {...this.state} homePage={this.homePage}/>}/>
 
-            <Route exact path="/signup" component={() => 
-            <SignUp users={this.state.users} addUser={this.addUser}/>}/>
+            <Route exact path="/signup" component={(routerProps) => 
+            <SignUp users={this.state.users} addUser={this.addUser} {...this.state} {...routerProps} />}/>
 
             <Route exact path="/login" component={(routerProps) => 
             <Login users={this.state.users} logIn={this.logIn} {...this.state} {...routerProps} />}

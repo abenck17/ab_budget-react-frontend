@@ -3,6 +3,18 @@ import React, { Component } from 'react';
 // import './Signup.css'
 
 class Signup extends Component {
+
+
+    handleSubmit = (event) => { // multiple functions for the onSubmit
+        event.preventDefault()
+
+        this.props.addUser(event)
+        this.props.history.push('/login')
+
+    }
+
+
+
     render(){
 
 
@@ -12,7 +24,7 @@ class Signup extends Component {
                 <h1>Sign Up</h1>
                 <div className="logInForm">
                     {/* <form action="/auth/login" method="POST"> */}
-                    <form onSubmit={this.props.addUser}>
+                    <form onSubmit={this.handleSubmit}>
                     Name: <input type="text" name="name" className="formInput"/> <br />
                     <br />
                     Username: <input type="text" name="username" className="formInput" /> <br />

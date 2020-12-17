@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'; 
-// import './Homepage.css'
+import './Homepage.css'
 
 class Homepage extends Component {
     render(){
@@ -15,6 +15,7 @@ class Homepage extends Component {
         // if (this.props.loggedIn === "true" || this.props.loggedIn === "false") {
             return (
             <div className="body">
+                <div className="extraBody">
                 <h1><i>Benck</i> Budget</h1>
                   
                     <div className="homepageNav">
@@ -23,13 +24,15 @@ class Homepage extends Component {
                                 SIGN UP
                             </Link>
                             <Link to='/login' className="homepageLink">
-                                LOGIN
+                                SIGN IN
                             </Link>
                             <Link to='/about_us' className="homepageLink">
                                 ABOUT US
                             </Link>
                         </nav>
-                    </div>
+                        
+                </div>
+            </div>
 
                 <footer className="footer">
                     <p>&copy; 2020 Benck Budget | Austin  Benckendorf GA student &middot;</p>

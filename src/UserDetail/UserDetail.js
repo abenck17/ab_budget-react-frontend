@@ -4,12 +4,13 @@ class UserDetail extends Component {
 
     render() {
 
-        console.log(this.props.users)
-        console.log(this.props.user_incomes)
-        console.log(this.props.user_expenses)
+        // console.log(this.props.users)
+        // console.log(this.props.user_incomes)
+        // console.log(this.props.user_expenses)
 
         const paramsId = parseInt(this.props.match.params.id)
 
+        
         const userDetail = this.props.users.find(user => {
             return user.id === paramsId
         })
