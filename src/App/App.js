@@ -1,10 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import './log.svg'
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Route, Link, Switch} from 'react-router-dom'
-import AllUsers from './AllUsers'
-import UserDetail from './UserDetail'
+import {Route, Link, Switch, Redirect} from 'react-router-dom';
+import Homepage from '../Homepage/Homepage';
+import Login from '../Login/Login';
+import SignUp from '../SignUp/SignUp';
+import AllUsers from '../AllUsers/AllUsers';
+import UserDetail from '../UserDetail/UserDetail';
+
 
 const backendUrl = "http://localhost:3000/api"
 
@@ -15,7 +19,9 @@ class App extends Component {
     this.state = {
       users: [],
       user_incomes: [],
-      user_expenses: []
+      user_expenses: [],
+      // loggedIn: "false",
+      // redirect: null
     }
   }
 
@@ -57,6 +63,35 @@ class App extends Component {
   //     user_expenses: response.data.allUserExpenses
   //   })
   // }
+
+  // homePage = async(event) => {
+  //   this.setState({ loggedIn: "false" })
+  // }
+
+  logIn = async(event) => {
+    event.preventDefault()
+
+    await axios.post(`${backendUrl}/auth/login`, {
+      username: event.target.username.value,
+      password: event.target.password.value
+    })
+
+    .then(res => {
+      if (res.status === 200) {
+        console.log("res status 200")
+        // this.setState({ loggedIn: "true" })
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
+
+    // this.setState({ redirect: "/" });
+  }
 
   addUser = async(event) => {
     event.preventDefault()
@@ -114,6 +149,7 @@ class App extends Component {
   //   this.getArtists() // combining a post and get request 
   // }
 
+
   updateArtist = async(event) => {
     event.preventDefault()
 
@@ -148,8 +184,17 @@ class App extends Component {
 
         <main>
           <Switch>
+            <Route exact path='/' render={() =>
+            <Homepage {...this.state} homePage={this.homePage}/>}/>
 
-            <Route exact path="/" component={() => 
+            <Route exact path="/signup" component={() => 
+            <SignUp users={this.state.users} addUser={this.addUser}/>}/>
+
+            <Route exact path="/login" component={(routerProps) => 
+            <Login users={this.state.users} logIn={this.logIn} {...this.state} {...routerProps} />}
+            />
+
+            <Route exact path="/allusers" component={() => 
             <AllUsers users={this.state.users} addUser={this.addUser} deleteUser={this.deleteUser}/>}/>
 
             <Route path="/users/:id" component={(routerProps) => 
