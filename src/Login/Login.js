@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom'; 
 
-// import './Login.css'
+import './Login.css'
 
 class Login extends Component {
 
@@ -60,19 +60,28 @@ class Login extends Component {
         return (
             <div>
             <main>
-                <h1>Login</h1>
-                <div className="logInForm">
+                {/* <h1>Login</h1> */}
+                <div className="signUpForm">
+                    <h2>Sign In</h2>
+                    <h4>One account for everything, budgeting made easy LEARN MORE</h4>
                     {/* <form action="/auth/login" method="POST"> */}
                     <form onSubmit={this.handleSubmit}>
-                    Username: <input type="text" name="username" className="formInput" /> <br />
+                    Username <input type="text" name="username" className="formInput" /> <br />
                     <br />
-                    Password: <input type="password" name="password" className="formInput" /><br />
+                    <br />
+                    <br />
+                    Password <input type="password" name="password" className="formInput" /><br />
+                    <br />
+                    <br />
                     <br />
                     <input type="submit" value="Login" className="signUpButton"/>
                     </form>
                 </div>
+                <Link to='/' className="btn">
+                    <p className="fa fa-home"></p>
+                </Link>
             </main>
-            {/* <button className="btn" onClick="document.location='/'"><i className="fa fa-home"></i></button> */}
+            
             </div>
         )
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import {Link} from 'react-router-dom'; 
-import './Signup.css'
+import {Link} from 'react-router-dom'; 
+import '../Login/Login.css'
 
 class Signup extends Component {
 
@@ -42,6 +42,9 @@ class Signup extends Component {
                     <input type="submit" value="Create Account" className="signUpButton"/>
                     </form>
                 </div>
+                <Link to='/' className="btn">
+                    <p className="fa fa-home"></p>
+                </Link>
             </main>
             {/* <button className="btn" onClick="document.location='/'"><i className="fa fa-home"></i></button> */}
             </div>
