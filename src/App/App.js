@@ -2,12 +2,14 @@ import './App.css';
 import './log.svg'
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Route, Link, Switch, Redirect} from 'react-router-dom';
+// import decode from 'jwt-decode'
+import {Route, Switch} from 'react-router-dom';
 import Homepage from '../Homepage/Homepage';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import AllUsers from '../AllUsers/AllUsers';
 import UserDetail from '../UserDetail/UserDetail';
+
 
 
 const backendUrl = "http://localhost:3000/api"
@@ -77,9 +79,17 @@ class App extends Component {
     })
 
     .then(res => {
+
+      console.log(res)
+      console.log(event.target.username.value)
+
+      // const userId = this.state.users.find(user => {
+      //   return user.id === res
+      // })
+      console.log(this.state.users)
+       
       if (res.status === 200) {
         console.log("res status 200")
-        console.log(event.target.id.value)
         // this.setState({ loggedIn: "true" })
       } else {
         const error = new Error(res.error);
@@ -151,17 +161,19 @@ class App extends Component {
   // }
 
 
-  updateArtist = async(event) => {
+  updateUser = async(event) => {
     event.preventDefault()
 
-    let artistId = event.target.artistId.value
+    let userId = event.target.userId.value
 
-    await axios.put(`${backendUrl}/artists/${artistId}`, {
+    await axios.put(`${backendUrl}/users/${userId}`, {
       name: event.target.name.value,
-      artistId: artistId
+      username: event.target.username.value,
+      password: event.target.password.value,
+      userId: userId
     })
 
-    this.getArtists()
+    this.getUsers()
   }
 
   deleteUser = async(event) => {
@@ -188,17 +200,17 @@ class App extends Component {
             <Route exact path='/' render={() =>
             <Homepage {...this.state} homePage={this.homePage}/>}/>
 
-            <Route path="/signup" component={(routerProps) => 
+            <Route exact path="/signup" component={(routerProps) => 
             <SignUp users={this.state.users} addUser={this.addUser} {...this.state} {...routerProps} />}/>
 
-            <Route path="/login" component={(routerProps) => 
+            <Route exact path="/login" component={(routerProps) => 
             <Login users={this.state.users} logIn={this.logIn} {...this.state} {...routerProps} />}
             />
 
-            <Route path="/allusers" component={() => 
+            <Route exact path="/allusers" component={() => 
             <AllUsers users={this.state.users} addUser={this.addUser} deleteUser={this.deleteUser}/>}/>
 
-            <Route path="/users/:id" component={(routerProps) => 
+            <Route exact path="/users/:id" component={(routerProps) => 
             <UserDetail users={this.state.users} user_incomes={this.state.user_incomes} user_expenses={this.state.user_expenses}
             addUserIncome={this.addUserIncome} addUserExpense={this.addUserExpense}
             {...routerProps} updateArtist={this.updateArtist}/>}/> 
@@ -210,4 +222,4 @@ class App extends Component {
   
   }
   
-export default App;
+export default (App);

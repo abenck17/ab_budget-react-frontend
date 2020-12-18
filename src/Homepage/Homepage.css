@@ -29,7 +29,7 @@ HTML {
     /* background-color: rgba(0,0,0,0.4); */
   }
 
-  h1 {
+  .extraBody h1 {
       font-family: 'Roboto Mono', monospace;
       position: absolute;
       font-size: 130px;
