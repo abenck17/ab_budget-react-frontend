@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 // import decode from 'jwt-decode'
 import {Route, Switch} from 'react-router-dom';
+import { Helmet } from 'react-helmet'
 import Homepage from '../Homepage/Homepage';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
@@ -98,7 +99,7 @@ class App extends Component {
     })
     .catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      // alert('Error logging in please try again');
     });
 
     // this.setState({ redirect: "/" });
@@ -164,7 +165,8 @@ class App extends Component {
   updateUser = async(event) => {
     event.preventDefault()
 
-    let userId = event.target.userId.value
+    let userId = event.target.id
+  
 
     await axios.put(`${backendUrl}/users/${userId}`, {
       name: event.target.name.value,
@@ -181,7 +183,7 @@ class App extends Component {
 
     let userId = event.target.id
 
-    await axios.delete(`${backendUrl}/users/${userId}`)
+    await axios.delete(`${backendUrl}/users/16`)
 
     this.getUsers()
   }
@@ -207,13 +209,13 @@ class App extends Component {
             <Login users={this.state.users} logIn={this.logIn} {...this.state} {...routerProps} />}
             />
 
-            <Route exact path="/allusers" component={() => 
+            <Route path="/allusers" component={() => 
             <AllUsers users={this.state.users} addUser={this.addUser} deleteUser={this.deleteUser}/>}/>
 
             <Route exact path="/users/:id" component={(routerProps) => 
             <UserDetail users={this.state.users} user_incomes={this.state.user_incomes} user_expenses={this.state.user_expenses}
             addUserIncome={this.addUserIncome} addUserExpense={this.addUserExpense}
-            {...routerProps} updateArtist={this.updateArtist}/>}/> 
+            {...routerProps} updateUser={this.updateUser} deleteUser={this.deleteUser}/>}/> 
           </Switch>
         </main>
       </div>

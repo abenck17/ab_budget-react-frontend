@@ -1,8 +1,23 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'; 
 import "./UserDetail.css"
+import { Helmet } from 'react-helmet'
 
 class UserDetail extends Component {
+
+    handleSubmit = (event) => { // multiple functions for the onSubmit
+        event.preventDefault()
+
+        this.props.updateUser(event)
+        this.props.history.push('/')
+    }
+
+    handleSubmit1 = (event) => { // multiple functions for the onSubmit
+        event.preventDefault()
+
+        this.props.deleteUser(event)
+        this.props.history.push('/')
+    }
 
      openForm = () => {
         document.getElementById("myForm").style.display = "block";
@@ -135,6 +150,9 @@ class UserDetail extends Component {
 
         return (
             <div className="body1">
+                <Helmet>
+                    <title>{ userDetail.name }</title>
+                </Helmet>
                 <div className="extraBody1">
                     <div className="userName">
                         <h1>
@@ -174,7 +192,7 @@ class UserDetail extends Component {
 
                     <div className="form-popup" id="myForm">
                         <h5>Edit User</h5>
-                            <form onSubmit={this.props.updateUser} action="/action_page.php" className="form-container">
+                            <form onSubmit={this.handleSubmit} className="form-container">
                                 <input type="hidden" name="userId" value={userDetail.id}/>
                                 <label htmlFor="name"><b>Name</b></label>
                                 <input type="text" name="name" placeholder={userDetail.name} />
@@ -183,9 +201,10 @@ class UserDetail extends Component {
                                 <label htmlFor="psw"><b>Password</b></label>
                                 <input type="text" name="password" placeholder={userDetail.password} />
 
-                                <button type="submit" className="btn">Update User</button>
-                                <button type="button" className="btn cancel" onClick={this.closeForm}>Close</button>
+                                <button type="submit" >Update User</button>
+                                <button type="button" onClick={this.closeForm}>Close</button>
                             </form>
+                        <button onClick={this.handleSubmit1}>Delete User</button>
                     </div>
 
                     <button className="open-button1" onClick={this.openForm1}>Add User Income</button>

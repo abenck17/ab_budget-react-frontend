@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import { Helmet } from 'react-helmet'
+
+const TITLE = 'My Page Title'
 
 class AllUsers extends Component {
 
+    componentWillMount() {
+        document.title = 'Your page title here';
+      }
+
     render() {
+
+        document.title = 'Your page title here';
 
         const allUsers = this.props.users.map(user => {
             console.log(user)
@@ -16,10 +25,14 @@ class AllUsers extends Component {
         })
 
         return (
+<div>
+            <Helmet>
+                <title>{ TITLE }</title>
+            </Helmet>
 
            
 
-            <div>
+            
 
                  <h1> All Users </h1>
                  <form onSubmit={this.props.addUser}>

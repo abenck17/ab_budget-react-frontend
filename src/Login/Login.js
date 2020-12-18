@@ -31,11 +31,28 @@ class Login extends Component {
         // })
         
         // console.log(userDetail)
+        let userId = 1
+        let usersId11 = 11
+        let usersId15 = 15
 
-        let usersId = this.props.users[0].id
+        if (event.target.username.value === "test3") {
+            this.props.logIn(event)
+            this.props.history.push(`/users/${userId}`)
+        } else if (event.target.username.value === "Austin1") {
+            if (event.target.password.value === "cool") {
+                this.props.logIn(event)
+                this.props.history.push(`/users/${usersId11}`)
+                } else if (event.target.password.value === "cook") {
+                    this.props.logIn(event)
+                    this.props.history.push(`/users/${usersId15}`)
+                } else {
+                    alert("Sorry, wrong username or password")
+        } 
+    } else {
+            alert("Sorry, wrong username or password")
+        }
 
-        this.props.logIn(event)
-        this.props.history.push(`/users/${usersId}`)
+        console.log(event.target.password.value)
 
     }
 
