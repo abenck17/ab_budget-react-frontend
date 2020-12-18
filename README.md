@@ -43,3 +43,7 @@ Benck Budget is a convenient app, which allows users to track their montly incom
 - **REACT:** framework used to store backend rendring of API data
 
 # Issues / Missed opertunities
+
+- Would have liked to understand deployment with Heroku better
+- Better authentifications methods when updating or deleting user information 
+
